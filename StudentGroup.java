@@ -67,29 +67,90 @@ public class StudentGroup implements StudentArrayOperation {
 	} 
 		
 	@Override
-	public void addFirst(Student student) {
+	public void addFirst(Student student) throws IllegalArgumentException {
 		// Add your implementation here
+		if(student==null)
+			throw new IllegalArgumentException();
+		Student stu=students[0];
+		students[0]=student;
+		Student stu1;
+		for(int i=1;i<students.length;i++)
+		{
+		stu1=students[i];
+		students[i]=stu;
+		stu=stu1;
+		}
+
+	} 
+		
+	
+
+	@Override
+	public void addLast(Student student) throws IllegalArgumentException{
+		// Add your implementation here
+		if(student==null)
+			throw new IllegalArgumentException();
+		for(int i=0;i<students.length;i++)
+		{
+		if(students[i]==null){
+		students[i]=student;
+		break;
+		}
+		}
+		
+	}
+		
+
+	@Override
+	public void add(Student student, int index){
+		// Add your implementation here
+		if(student==null || index<0 || index>=this.students.length)
+			throw new IllegalArgumentException();
+		Student stu=students[index];
+		students[index]=student;
+		Student stu1;
+		for(int i=index+1;i<students.length;i++)
+		{
+		stu1=students[i];
+		students[i]=stu;
+		stu=stu1;
+		}
+
 	}
 
 	@Override
-	public void addLast(Student student) {
+	public void remove(int index)throws IllegalArgumentException{
 		// Add your implementation here
+		if(index<0 || index>=students.length)
+			throw new IllegalArgumentException();
+		for(int j=index;j<students.length-1;j++)
+		{
+			students[j]=students[j+1];
+		}
+	}
+	@Override
+	public void remove(Student student) throws IllegalArgumentException {
+		// Add your implementation here
+		int count=0;
+		if(student==null)
+			throw new IllegalArgumentException();
+		for(int i=0;i<students.length;i++)
+		{
+		if(students[i]==student)
+		{
+		for(int j=i;j<students.length-1;j++)
+		{
+			students[j]=students[j+1];
+		}
+		count++;
+		break;
+			
+		}
+		}
+		if(count==0)
+			throw new IllegalArgumentException("Student not exist");
 	}
 
-	@Override
-	public void add(Student student, int index) {
-		// Add your implementation here
-	}
-
-	@Override
-	public void remove(int index) {
-		// Add your implementation here
-	}
-
-	@Override
-	public void remove(Student student) {
-		// Add your implementation here
-	}
 
 	@Override
 	public void removeFromIndex(int index) {
