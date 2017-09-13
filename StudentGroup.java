@@ -239,10 +239,21 @@ public class StudentGroup implements StudentArrayOperation {
 	}
 
 	@Override
-	public void bubbleSort() {
+	public void bubbleSort(){
 		// Add your implementation here
+		Student stu;
+		for(int i=0;i<students.length-1;i++)
+		{
+		for(int j=0;j<students.length-i-1;j++)
+		{
+		if(students[j].compareTo(students[j+1])>0){
+		stu=students[j];
+		students[j]=students[j+1];
+		students[j+1]=stu;
+		}
+		}
+		}
 	}
-
 	@Override
 	public Student[] getByBirthDate(Date date) {
 		// Add your implementation here
